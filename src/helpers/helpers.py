@@ -10,17 +10,18 @@ class Constants:
   fontsize = 25
 
 
-gray_plotter = lambda img: plt.imshow(img, cmap='gray', vmax = 255, vmin=0)
+def gray_plotter(img):
+  plt.imshow(img, cmap='gray', vmax = 255, vmin=0)
 
 
-def plot_linear_layout(imgs, titles=[], plotter = gray_plotter):
+def plot_linear_layout(imgs, titles=[], plotter=gray_plotter):
   N = len(imgs)
   gs = GridSpec(1, N)
   gs.update(wspace=0, hspace=0)
   plot_with_gs(imgs, titles, gs, plotter, N)
 
 
-def plot_rectangular_layout(imgs, titles=[], plotter = gray_plotter):
+def plot_rectangular_layout(imgs, titles=[], plotter=gray_plotter):
   N = len(imgs)
   n = int(sqrt(len(imgs)))
   gs = GridSpec(n, n)
