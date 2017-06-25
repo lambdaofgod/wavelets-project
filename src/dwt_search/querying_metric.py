@@ -37,7 +37,7 @@ class ImageQueryingMetric:
 
     def metric(self, c1, c2):
         weighted_difference = self.weights * (c1 - c2)
-        return abs(c1.mean() - c2.mean()) + self.default_norm(weighted_difference)
+        return self.default_norm(weighted_difference)
 
     def __get_distances(self, img):
         coeffs = self._coeff_extractor.transform([img])[0]
