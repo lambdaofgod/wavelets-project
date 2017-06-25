@@ -17,11 +17,13 @@ class WaveletCoefficientTransformer:
             else:
                 self.__get_coefficients = get_ca_coefficients3
 
-    def fit_transform(self, image):
-        if image.ndim == self.ndim:
-            return self.__get_coefficients(image, self.wavelet, self.mode, self.level)
-        else:
-            raise AttributeError("Tried to get {}d transform in {}d transformer".format(image.ndim, self.ndim))
+    def fit_transform(self, images):
+        def transform_single(image):
+            if image.ndim == self.ndim:
+                return self.__get_coefficients(image, self.wavelet, self.mode, self.level)
+            else:
+                raise AttributeError("Tried to get {}d transform in {}d transformer".format(image.ndim, self.ndim))
+        return [transform_single(image) for image in images]
 
 
 def get_ca_coefficients3(multi_channel_image, wavelet, mode='periodization', level=1):

@@ -8,8 +8,8 @@ class ThresholdTransformer:
         self.n = n
         self.binary = binary
 
-    def fit_transform(self, X):
-        return self.__thresholder(self.binary)(self.n, X)
+    def fit_transform(self, data):
+        return [self.__thresholder(self.binary)(self.n, point) for point in data]
 
     def __thresholder(self, binary):
         if binary:
