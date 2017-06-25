@@ -26,6 +26,7 @@ class ImageQueryingMetric:
         self.data = coeffs
 
     def predict(self, imgs, n):
+        """predict_single for each image in imgs"""
         return [self.predict_single(img, n) for img in imgs]
 
     def predict_single(self, img, n):
@@ -36,6 +37,7 @@ class ImageQueryingMetric:
         return list(zip(*n_closest_tuples))
 
     def metric(self, c1, c2):
+        """Weighted metric from paper, falls back to l1 norm"""
         weighted_difference = self.weights * (c1 - c2)
         return self.default_norm(weighted_difference)
 
@@ -47,6 +49,7 @@ class ImageQueryingMetric:
         return imresize(img, self.shape)
 
     def default_norm(self, v):
+        """l1 norm"""
         return abs(v).sum()
 
 
