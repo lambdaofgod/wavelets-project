@@ -1,4 +1,5 @@
 from heapq import nlargest
+
 import numpy as np
 
 
@@ -8,7 +9,10 @@ class ThresholdTransformer:
         self.n = n
         self.binary = binary
 
-    def fit_transform(self, data):
+    def fit(self, data):
+        return
+
+    def transform(self, data):
         return [self.__thresholder(self.binary)(self.n, point) for point in data]
 
     def __thresholder(self, binary):

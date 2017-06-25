@@ -1,2 +1,3 @@
 from dwt_search.coefficients import WaveletCoefficientTransformer
 from dwt_search.thresholding import ThresholdTransformer
+from dwt_search.querying_metric import ImageQueryingMetric

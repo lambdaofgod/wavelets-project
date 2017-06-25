@@ -1,5 +1,5 @@
-import pywt
 import numpy as np
+import pywt
 
 
 class WaveletCoefficientTransformer:
@@ -17,7 +17,10 @@ class WaveletCoefficientTransformer:
             else:
                 self.__get_coefficients = get_ca_coefficients3
 
-    def fit_transform(self, images):
+    def fit(self, data):
+        return
+
+    def transform(self, images):
         def transform_single(image):
             if image.ndim == self.ndim:
                 return self.__get_coefficients(image, self.wavelet, self.mode, self.level)
