@@ -11,7 +11,7 @@ class WaveletCoefficientTransformer:
     ndim : int
         Shape of input data tensor
 
-    wavelet : Wavelet
+    wavelet : Wavelet, or str
         Wavelet to use for extracting coefficients
 
     mode : str
@@ -47,6 +47,7 @@ class WaveletCoefficientTransformer:
             return self.__get_coefficients(image, self.wavelet, self.mode, self.level)
         else:
             raise AttributeError("Tried to get {}d transform in {}d transformer".format(image.ndim, self.ndim))
+
 
 def get_ca_coefficients3(multi_channel_image, wavelet, mode='periodization', level=1):
     """Get coefficients for multichannel image"""
