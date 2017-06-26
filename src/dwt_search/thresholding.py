@@ -4,6 +4,20 @@ import numpy as np
 
 
 class ThresholdTransformer:
+    """ThresholdTransformer
+
+    Zero out values less than nth biggest value
+
+    Parameters
+    ----------
+
+    n : int
+        Number of wavelet coefficients to save
+
+    binary: bool, default=True
+        Only use sign of thresholded values
+
+    """
 
     def __init__(self, n, binary=True):
         self.n = n
@@ -13,6 +27,7 @@ class ThresholdTransformer:
         return
 
     def transform(self, data):
+        """Apply thresholding for each data point"""
         return [self.__thresholder(self.binary)(self.n, point) for point in data]
 
     def __thresholder(self, binary):

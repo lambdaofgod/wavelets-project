@@ -3,6 +3,23 @@ import pywt
 
 
 class WaveletCoefficientTransformer:
+    """
+
+    Parameters
+    ----------
+
+    ndim : int
+        Shape of input data tensor
+
+    wavelet : Wavelet
+        Wavelet to use for extracting coefficients
+
+    mode : str
+        Wavelet mode
+
+    level : int
+        Wavelet transform level
+    """
 
     def __init__(self, ndim, wavelet, mode, level):
         self.wavelet = wavelet
@@ -21,13 +38,15 @@ class WaveletCoefficientTransformer:
         return
 
     def transform(self, images):
-        def transform_single(image):
-            if image.ndim == self.ndim:
-                return self.__get_coefficients(image, self.wavelet, self.mode, self.level)
-            else:
-                raise AttributeError("Tried to get {}d transform in {}d transformer".format(image.ndim, self.ndim))
-        return [transform_single(image) for image in images]
+        """Get coefficients for each image from images"""
+        return [self.transform_single(image) for image in images]
 
+    def transform_single(self, image):
+        """Get cA wavelet coefficients for image"""
+        if image.ndim == self.ndim:
+            return self.__get_coefficients(image, self.wavelet, self.mode, self.level)
+        else:
+            raise AttributeError("Tried to get {}d transform in {}d transformer".format(image.ndim, self.ndim))
 
 def get_ca_coefficients3(multi_channel_image, wavelet, mode='periodization', level=1):
     """Get coefficients for multichannel image"""

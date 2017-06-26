@@ -2,9 +2,7 @@ import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
 from numpy import sqrt
 
-"""
-  Helpers to use in jupyter
-"""
+"""Plotting helpers"""
 
 class Constants:
   fontsize = 25
