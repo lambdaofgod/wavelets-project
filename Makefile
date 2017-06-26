@@ -9,4 +9,4 @@
 
 ## Make Dataset
 data:
-	bash scripts/load_caltech101.sh 
+	bash scripts/load_data.sh 
